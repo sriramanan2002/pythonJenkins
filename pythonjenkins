@@ -1,0 +1,14 @@
+ stage('Run Application') {  
+       steps {  
+           deploy(  
+               artifact: 'src/app.py',  
+               environment: 'local',  
+               servers: [  
+                   [  
+                       credentialsId: 'centos-python-runtime',  
+                       host: 'localhost'  
+                   ]  
+               ]  
+           )  
+       }  
+   }  
