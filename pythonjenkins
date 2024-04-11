@@ -11,7 +11,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 deploy(
-                    artifact: 'main/app.py',
+                    artifact: 'app.py',
                     environment: 'local',
                     servers: [
                         [
