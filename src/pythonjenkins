@@ -1,26 +1,15 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
-
-        stage('Run Application') {
-            steps {
-                deploy(
-                    artifact: 'app.py',
-                    environment: 'local',
-                    servers: [
-                        [
-                            credentialsId: 'centos-python-runtime',
-                            host: 'localhost'
-                        ]
-                    ]
-                )
-            }
-        }
+  agent any
+  stages {
+    stage('version') {
+      steps {
+        sh 'python3 --version'
+      }
     }
+    stage('hello') {
+      steps {
+        sh 'python3 src/app.py'
+      }
+    }
+  }
 }
