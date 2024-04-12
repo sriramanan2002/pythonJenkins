@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Run Application') {
+            steps {
+                deploy(
+                    artifact: 'app.py',
+                    environment: 'local',
+                    servers: [
+                        [
+                            credentialsId: 'centos-python-runtime',
+                            host: 'localhost'
+                        ]
+                    ]
+                )
+            }
+        }
+    }
+}
